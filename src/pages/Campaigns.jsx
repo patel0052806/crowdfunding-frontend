@@ -16,7 +16,7 @@ export const Campaigns = () => {
 
   const fetchCampaigns = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/data/campaigns", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/data/campaigns`, {
         method: "GET",
       });
       if (response.ok) {
@@ -35,7 +35,7 @@ export const Campaigns = () => {
   const deleteCampaign = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/data/campaigns/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/data/campaigns/${id}`,
         {
           method: "DELETE",
           headers: {

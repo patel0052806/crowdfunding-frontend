@@ -10,7 +10,7 @@ export const AdminDashboard = () => {
 
   const fetchPendingCampaigns = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/campaigns/pending", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/pending`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ export const AdminDashboard = () => {
 
   const approveCampaign = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/campaigns/approve/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/approve/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ export const AdminDashboard = () => {
 
   const rejectCampaign = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/campaigns/reject/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/reject/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

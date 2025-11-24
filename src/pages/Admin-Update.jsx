@@ -17,7 +17,7 @@ export const AdminUpdate = () => {
 
   const getCampaignById = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/campaigns/${params.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/${params.id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export const AdminUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/campaigns/update/${params.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/update/${params.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

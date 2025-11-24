@@ -9,7 +9,7 @@ export const DonationReport = () => {
 
     const fetchDonations = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/donation/donations/${params.campaignId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/donation/donations/${params.campaignId}`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

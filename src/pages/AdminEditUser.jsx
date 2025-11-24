@@ -17,7 +17,7 @@ export const AdminEditUser = () => {
 
   const getUserById = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/users/${params.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/${params.id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const AdminEditUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/users/update/${params.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users/update/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
