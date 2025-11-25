@@ -18,12 +18,7 @@ export const Home = () => {
             </div>
           </div>
           <div className="hero-image">
-            <img
-              src="/src/assets/launchpad.svg"
-              alt="Launch Pad"
-              width={200}
-              height={200}
-            />
+            <img src="images/home.png" alt="Hero" width={400} height={500} />
           </div>
         </div>
       </section>
