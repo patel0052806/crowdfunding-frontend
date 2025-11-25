@@ -9,7 +9,7 @@ export const Navbar = () => {
       <header>
         <div className="container">
           <div className="logo-brand">
-            <NavLink to="/"><img src="/images/home.png" alt="Launch Pad" />Launch Pad</NavLink>
+            <NavLink to="/"><img src="/src/assets/launchpad.svg" alt="Launch Pad" style={{height:40}} />Launch Pad</NavLink>
           </div>
           <nav>
             <ul>

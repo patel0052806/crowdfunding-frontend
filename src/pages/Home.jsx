@@ -1,7 +1,3 @@
-
-
-
-
 import { Link } from "react-router-dom";
 
 export const Home = () => {
@@ -22,7 +18,12 @@ export const Home = () => {
             </div>
           </div>
           <div className="hero-image">
-            <img src="images/home.png" alt="Hero" width={400} height={500} />
+            <img
+              src="/src/assets/launchpad.svg"
+              alt="Launch Pad"
+              width={200}
+              height={200}
+            />
           </div>
         </div>
       </section>
