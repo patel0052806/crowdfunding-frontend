@@ -98,7 +98,7 @@ export const Navbar = () => {
 
           {/* Mobile overlay menu */}
           {mobileMenuOpen && (
-            <div className="mobile-nav-overlay" onClick={() => setMobileMenuOpen(false)}>
+            <div className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`} onClick={() => setMobileMenuOpen(false)}>
               <div className="mobile-nav" onClick={(e) => e.stopPropagation()}>
                 <div className="mobile-theme">
                   <div className="theme-switcher">
