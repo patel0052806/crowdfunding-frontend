@@ -5,9 +5,22 @@
   box-sizing: border-box;
 }
 
+/* CSS Variables for theming */
+:root {
+  --color-primary: #3b82f6;
+  --color-secondary: #667eea;
+  --color-accent: #764ba2;
+  --color-background: #f8fafc;
+  --color-text: #1e293b;
+  --color-textsecondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-card: #ffffff;
+  --color-headergradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 /* Header styles */
 header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-headergradient);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -23,7 +36,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: auto;
+  flex-wrap: wrap;
+  row-gap: 15px;
 }
 
 /* Logo brand */
@@ -63,11 +78,21 @@ header {
 }
 
 /* Navigation */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
 nav ul {
   display: flex;
   list-style: none;
   align-items: center;
   gap: 0;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 nav ul li {
@@ -147,26 +172,204 @@ nav ul li a[href="/logout"]:hover {
   box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
+/* Theme Switcher Styles */
+.theme-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  min-height: 45px;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.theme-btn:active {
+  transform: translateY(0);
+}
+
+.theme-icon {
+  font-size: 20px;
+  display: block;
+  line-height: 1;
+}
+
+.theme-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.theme-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--color-card);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  min-width: 240px;
+  max-height: 350px;
+  overflow-y: auto;
+  margin-top: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+}
+
+.theme-option:hover {
+  background: var(--color-background);
+  padding-left: 22px;
+}
+
+.theme-option.active {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+}
+
+.theme-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+}
+
+.theme-option.active .theme-dot {
+  border-color: white;
+}
+
+/* Theme dot colors by data attribute */
+.theme-dot[data-theme="light"] {
+  background: linear-gradient(135deg, #3b82f6, #764ba2);
+}
+
+.theme-dot[data-theme="dark"] {
+  background: #1e293b;
+  border-color: #64748b;
+}
+
+.theme-dot[data-theme="purple"] {
+  background: linear-gradient(135deg, #a855f7, #d946ef);
+}
+
+.theme-dot[data-theme="neon"] {
+  background: linear-gradient(135deg, #00ff00, #00ffff);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+.theme-dot[data-theme="blue"] {
+  background: linear-gradient(135deg, #0284c7, #06b6d4);
+}
+
+.theme-dot[data-theme="ocean"] {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+}
+
+.theme-dot[data-theme="sunset"] {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.theme-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.theme-menu::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-radius: 10px;
+}
+
+.theme-menu::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+.theme-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .container {
-    height: auto;
     flex-direction: column;
     padding: 15px 20px;
+    height: auto;
   }
   
   .logo-brand {
-    margin-bottom: 15px;
+    width: 100%;
+    text-align: center;
   }
   
   .logo-brand a {
     font-size: 24px;
   }
   
+  nav {
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+  }
+
   nav ul {
-    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 8px;
+  }
+  
+  nav ul li {
+    flex: 0 1 auto;
   }
   
   nav ul li a {
@@ -178,6 +381,19 @@ nav ul li a[href="/logout"]:hover {
   nav ul li:nth-last-child(2) a {
     margin-left: 0;
   }
+
+  .theme-switcher {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .theme-menu {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -185,19 +401,74 @@ nav ul li a[href="/logout"]:hover {
     padding: 12px 15px;
   }
   
+  .logo-brand a {
+    font-size: 20px;
+  }
+
+  nav {
+    gap: 10px;
+  }
+  
   nav ul {
     width: 100%;
+    gap: 6px;
   }
   
   nav ul li {
     flex: 1;
+    min-width: 80px;
     text-align: center;
   }
   
   nav ul li a {
     padding: 8px 12px;
-    font-size: 13px;
+    font-size: 12px;
     border-radius: 20px;
+  }
+
+  .theme-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .theme-icon {
+    font-size: 16px;
+  }
+
+  .theme-name {
+    font-size: 12px;
+  }
+
+  .theme-menu {
+    width: 180px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  nav ul li a {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .logo-brand a {
+    font-size: 18px;
+  }
+
+  .theme-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .theme-name {
+    display: none;
+  }
+
+  .theme-menu {
+    width: 160px;
+    min-width: 160px;
   }
 }
 

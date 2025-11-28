@@ -5,11 +5,25 @@
   box-sizing: border-box;
 }
 
+/* CSS Variables for theming */
+:root {
+  --color-primary: #3b82f6;
+  --color-secondary: #667eea;
+  --color-accent: #764ba2;
+  --color-background: #f8fafc;
+  --color-text: #1e293b;
+  --color-textsecondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-card: #ffffff;
+  --color-headergradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f8fafc;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Container and Grid Layout */
@@ -39,7 +53,7 @@ body {
 .main-heading {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-text);
   text-align: center;
   margin-bottom: 1rem;
   text-transform: capitalize;
@@ -48,20 +62,20 @@ body {
 h1 {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--color-textsecondary);
   margin-bottom: 0.75rem;
 }
 
 p {
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--color-textsecondary);
   margin-bottom: 1rem;
 }
 
@@ -71,7 +85,7 @@ p {
 }
 
 .brand {
-  color: #3b82f6;
+  color: var(--color-primary);
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -80,7 +94,7 @@ p {
 .btn {
   display: inline-block;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: white;
   text-decoration: none;
   border: none;
@@ -93,15 +107,15 @@ p {
 }
 
 .btn:hover {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
 .btn:active,
 .btn:focus {
-  color: white; /* Ensure text remains white on click/focus */
-  outline: none; /* Remove default focus outline */
+  color: white;
+  outline: none;
 }
 
 .btn-group {
@@ -117,15 +131,16 @@ p {
 /* Hero Section */
 .section-hero {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
   min-height: 80vh;
   display: flex;
   align-items: center;
+  transition: background 0.3s ease;
 }
 
 .hero-content h1 {
   font-size: 3rem;
-  background: linear-gradient(135deg, #1e293b, #3b82f6);
+  background: linear-gradient(135deg, var(--color-text), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -134,7 +149,7 @@ p {
 
 .hero-content p {
   font-size: 1.25rem;
-  color: #64748b;
+  color: var(--color-textsecondary);
   margin-bottom: 2rem;
 }
 
@@ -165,7 +180,7 @@ p {
 
 .about-header h1 {
   font-size: 3rem;
-  background: linear-gradient(135deg, #1e293b, #3b82f6);
+  background: linear-gradient(135deg, var(--color-text), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -174,7 +189,7 @@ p {
 
 .about-header p {
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--color-textsecondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -187,12 +202,12 @@ p {
 }
 
 .about-card {
-  background: white;
+  background: var(--color-card);
   padding: 2.5rem 2rem;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .about-card:hover {
@@ -201,13 +216,13 @@ p {
 }
 
 .about-card h2 {
-  color: #1e293b;
+  color: var(--color-text);
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .about-card p {
-  color: #64748b;
+  color: var(--color-textsecondary);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -231,11 +246,11 @@ p {
 }
 
 .section-form {
-  background: white;
+  background: var(--color-card);
   padding: 3rem;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 /* Form Styles */
@@ -253,7 +268,7 @@ form div {
 
 label {
   font-weight: 600;
-  color: #374151;
+  color: var(--color-text);
   text-transform: capitalize;
   font-size: 0.95rem;
 }
@@ -261,24 +276,25 @@ label {
 input,
 textarea {
   padding: 12px 16px;
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background-color: #f9fafb;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #3b82f6;
-  background-color: white;
+  border-color: var(--color-primary);
+  background-color: var(--color-card);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #9ca3af;
+  color: var(--color-textsecondary);
 }
 
 textarea {
@@ -293,10 +309,10 @@ textarea {
   max-width: 450px;
   margin: 3rem auto;
   padding: 3rem;
-  background: white;
+  background: var(--color-card);
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .admin-update-section {
@@ -304,14 +320,14 @@ textarea {
 }
 
 .admin-update-section .section-form {
-  max-width: 600px; /* Adjust max-width for the update form */
-  margin: 3rem auto; /* Center the form */
+  max-width: 600px;
+  margin: 3rem auto;
 }
 
 .login-form h1,
 .registration-form h1 {
   text-align: center;
-  color: #1e293b;
+  color: var(--color-text);
   margin-bottom: 2rem;
 }
 
@@ -325,7 +341,7 @@ textarea {
 .login-form button,
 .registration-form button {
   padding: 14px;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: white;
   border: none;
   border-radius: 8px;
@@ -338,7 +354,7 @@ textarea {
 
 .login-form button:hover,
 .registration-form button:hover {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
@@ -352,11 +368,9 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-
-
 .progress-bar {
   width: 100%;
-  background-color: #e2e8f0;
+  background-color: var(--color-border);
   border-radius: 8px;
   height: 10px;
   margin-bottom: 1rem;
@@ -364,7 +378,7 @@ textarea {
 
 .progress {
   height: 100%;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border-radius: 8px;
 }
 
@@ -377,12 +391,12 @@ textarea {
 .campaign-stats p {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--color-textsecondary);
   margin-bottom: 0;
 }
 
 .campaign-stats .goal {
-  color: #3b82f6;
+  color: var(--color-primary);
 }
 
 /* Animation Classes */
@@ -399,4 +413,70 @@ textarea {
 
 .fade-in-up {
   animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid-two-cols,
+  .grid-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-header h1 {
+    font-size: 2rem;
+  }
+
+  .section-form,
+  .login-form,
+  .registration-form {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .section-hero,
+  .about-container,
+  .section-contact {
+    padding: 2rem 0;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+  }
+
+  .section-form,
+  .login-form,
+  .registration-form {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
 }
