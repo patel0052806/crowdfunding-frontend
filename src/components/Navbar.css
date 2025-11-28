@@ -337,44 +337,133 @@ nav ul li a[href="/logout"]:hover {
   background: var(--color-accent);
 }
 
+/* Mobile menu base styles */
+.mobile-menu-button {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 12px;
+}
+
+.mobile-menu-button .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: white;
+  margin: 4px 0;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.mobile-menu-button.open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-button.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-button.open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 2500;
+}
+
+.mobile-nav {
+  width: 320px;
+  max-width: 85%;
+  background: var(--color-card);
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: -8px 0 30px rgba(0,0,0,0.35);
+}
+
+.mobile-nav .theme-btn {
+  margin-bottom: 12px;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-nav ul li a {
+  padding: 10px 12px;
+  display: block;
+  color: var(--color-text);
+  border-radius: 8px;
+  background: transparent;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
+  /* Make header compact and avoid centering nav vertically */
+  header {
+    padding: 10px 0;
+  }
+
   .container {
     flex-direction: column;
-    padding: 15px 20px;
+    padding: 10px 16px;
     height: auto;
+    align-items: flex-start;
   }
   
   .logo-brand {
     width: 100%;
     text-align: center;
+    margin-bottom: 8px;
   }
   
   .logo-brand a {
-    font-size: 24px;
+    font-size: 22px;
   }
   
+  /* Make nav flow naturally and not take full height */
   nav {
     width: 100%;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Hide desktop nav list on mobile and show mobile button */
+  .mobile-menu-button {
+    display: block;
   }
 
   nav ul {
+    display: none;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
   }
   
   nav ul li {
-    flex: 0 1 auto;
+    width: 100%;
+    text-align: center;
   }
   
   nav ul li a {
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 15px;
+    display: inline-block;
   }
   
   nav ul li:nth-last-child(1) a,
@@ -382,17 +471,21 @@ nav ul li a[href="/logout"]:hover {
     margin-left: 0;
   }
 
+  /* Keep the theme switcher compact and centered */
   .theme-switcher {
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
+    align-self: center;
+    margin-bottom: 6px;
   }
 
   .theme-menu {
     right: auto;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
+    width: 220px;
+    margin-top: 6px;
   }
 }
 
@@ -425,10 +518,9 @@ nav ul li a[href="/logout"]:hover {
     font-size: 12px;
     border-radius: 20px;
   }
-
   .theme-btn {
     padding: 8px 12px;
-    font-size: 14px;
+    font-size: 13px;
     gap: 6px;
   }
 
@@ -441,8 +533,8 @@ nav ul li a[href="/logout"]:hover {
   }
 
   .theme-menu {
-    width: 180px;
-    max-height: 200px;
+    width: 200px;
+    max-height: 250px;
     overflow-y: auto;
   }
 }
