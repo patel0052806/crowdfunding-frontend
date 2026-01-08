@@ -1,0 +1,482 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables for theming */
+:root {
+  --color-primary: #3b82f6;
+  --color-secondary: #667eea;
+  --color-accent: #764ba2;
+  --color-background: #f8fafc;
+  --color-text: #1e293b;
+  --color-textsecondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-card: #ffffff;
+  --color-headergradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container and Grid Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-two-cols {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.grid-two-column {
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Typography */
+.main-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-textsecondary);
+  margin-bottom: 0.75rem;
+}
+
+p {
+  font-size: 1.1rem;
+  color: var(--color-textsecondary);
+  margin-bottom: 1rem;
+}
+
+/* Utility Classes */
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.brand {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btn:active,
+.btn:focus {
+  color: white;
+  outline: none;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-group a {
+  text-decoration: none;
+}
+
+/* Hero Section */
+.section-hero {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--color-text), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  color: var(--color-textsecondary);
+  margin-bottom: 2rem;
+}
+
+.hero-image {
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* About Section */
+.about-container {
+  padding: 5rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--color-text), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: var(--color-textsecondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.about-card {
+  background: var(--color-card);
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--color-border);
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about-card h2 {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-card p {
+  color: var(--color-textsecondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Contact Section */
+.section-contact {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.contact-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.section-form {
+  background: var(--color-card);
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: capitalize;
+  font-size: 0.95rem;
+}
+
+input,
+textarea {
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: var(--color-card);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-textsecondary);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+/* Login and Registration Forms */
+.login-form,
+.registration-form {
+  max-width: 450px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background: var(--color-card);
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+.admin-update-section {
+  padding: 4rem 0;
+}
+
+.admin-update-section .section-form {
+  max-width: 600px;
+  margin: 3rem auto;
+}
+
+.login-form h1,
+.registration-form h1 {
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+}
+
+.login-form form,
+.registration-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-form button,
+.registration-form button {
+  padding: 14px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login-form button:hover,
+.registration-form button:hover {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Campaigns Page Styles */
+.section-campaigns {
+  padding: 4rem 0;
+}
+
+.grid-three-cols {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: var(--color-border);
+  border-radius: 8px;
+  height: 10px;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: 8px;
+}
+
+.campaign-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.campaign-stats p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-textsecondary);
+  margin-bottom: 0;
+}
+
+.campaign-stats .goal {
+  color: var(--color-primary);
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid-two-cols,
+  .grid-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .about-header h1 {
+    font-size: 2rem;
+  }
+
+  .section-form,
+  .login-form,
+  .registration-form {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-heading {
+    font-size: 1.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .section-hero,
+  .about-container,
+  .section-contact {
+    padding: 2rem 0;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+  }
+
+  .section-form,
+  .login-form,
+  .registration-form {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}

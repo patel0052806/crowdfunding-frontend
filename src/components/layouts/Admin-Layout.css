@@ -1,0 +1,44 @@
+/* c:/crowdfunding/client/src/components/layouts/Admin-Layout.css */
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header nav ul li a:hover {
+    color: #ddd;
+}
+
+header nav ul li a.active {
+    font-weight: bold;
+    color: #4CAF50;
+}

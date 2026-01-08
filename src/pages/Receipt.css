@@ -1,0 +1,115 @@
+.receipt-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ece9e6, #ffffff);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 2px dashed #3498db;
+    padding-bottom: 1.5rem;
+}
+
+.receipt-header h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.receipt-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+}
+
+.receipt-details {
+    margin-bottom: 2.5rem;
+}
+
+.receipt-details h2 {
+    font-size: 1.8rem;
+    color: #3498db;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 1.1rem;
+}
+
+.detail-item span:first-child {
+    font-weight: bold;
+    color: #555;
+}
+
+.detail-item span:last-child {
+    color: #2c3e50;
+}
+
+.receipt-summary {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-left: 5px solid #3498db;
+    margin-bottom: 2.5rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.summary-item.total {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #3498db;
+    margin-top: 1.5rem;
+    border-top: 2px solid #ecf0f1;
+    padding-top: 1rem;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: #7f8c8d;
+}
+
+.receipt-footer p {
+    margin: 0.5rem 0;
+}
+
+.download-btn {
+    display: block;
+    width: 200px;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}

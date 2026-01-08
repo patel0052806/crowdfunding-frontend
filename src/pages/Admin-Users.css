@@ -1,0 +1,86 @@
+/* c:/crowdfunding/client/src/pages/Admin-Users.css */
+
+.admin-users-section {
+  padding: 4rem 0;
+}
+
+.admin-users-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.admin-users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.user-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.user-info p {
+  font-size: 1.1rem;
+  color: #475569;
+  margin: 0;
+}
+
+.user-info .label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.user-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.user-actions .edit-btn,
+.user-actions .delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-actions .edit-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.user-actions .edit-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+}
+
+.user-actions .delete-btn {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.user-actions .delete-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  transform: translateY(-2px);
+}
