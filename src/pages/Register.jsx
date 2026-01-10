@@ -10,7 +10,9 @@ export const Register = () => {
     phone: "",
     password: "",
   });
-  const [errorMsg, setErrorMsg] = useState(""); // Add error message state
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [otp, setOtp] = useState("");
   const navigate = useNavigate();
   const { storeTokenInLS } = useAuth();
 
@@ -21,6 +23,29 @@ export const Register = () => {
       ...user,
       [name]: value,
     });
+  };
+
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/verify-otp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: user.email, otp }),
+      });
+      const res_data = await response.json();
+      if (response.ok) {
+        toast.success("OTP verified successfully");
+        storeTokenInLS(res_data.token);
+        navigate("/");
+      } else {
+        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+      }
+    } catch (error) {
+      console.error("Error", error);
+    }
   };
 
   // handle form on submit
@@ -39,13 +64,17 @@ export const Register = () => {
       const res_data = await response.json();
       console.log("res from server", res_data.extraDetails);
       if (response.ok) {
-        //const res_data = await response.json();
-        toast.success("registration successful");
-        setUser({ username: "", email: "", phone: "", password: "" });
-        if (res_data.token) {
-          storeTokenInLS(res_data.token);
-        }
-        navigate("/");
+        toast.success("registration successful, please verify your email");
+        setShowOtpInput(true);
+
+        // send otp
+        await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: user.email }),
+        });
       } else {
         toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
         setErrorMsg(res_data.message || "Registration failed. Please try again.");
@@ -68,51 +97,70 @@ export const Register = () => {
                 {errorMsg}
               </div>
             )}
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="username">username</label>
-                <input
-                  type="text"
-                  name="username"
-                  value={user.username}
-                  onChange={handleInput}
-                  placeholder="username"
-                />
-              </div>
-              <div>
-                <label htmlFor="email">email</label>
-                <input
-                  type="text"
-                  name="email"
-                  value={user.email}
-                  onChange={handleInput}
-                  placeholder="email"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone">phone</label>
-                <input
-                  type="number"
-                  name="phone"
-                  value={user.phone}
-                  onChange={handleInput}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">password</label>
-                <input
-                  type="password"
-                  name="password"
-                  value={user.password}
-                  onChange={handleInput}
-                  placeholder="password"
-                />
-              </div>
-              <br />
-              <button type="submit" className="btn btn-submit">
-                Register Now
-              </button>
-            </form>
+            {!showOtpInput ? (
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="username">username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    value={user.username}
+                    onChange={handleInput}
+                    placeholder="username"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email">email</label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={user.email}
+                    onChange={handleInput}
+                    placeholder="email"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone">phone</label>
+                  <input
+                    type="number"
+                    name="phone"
+                    value={user.phone}
+                    onChange={handleInput}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password">password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleInput}
+                    placeholder="password"
+                  />
+                </div>
+                <br />
+                <button type="submit" className="btn btn-submit">
+                  Register Now
+                </button>
+              </form>
+            ) : (
+              <form onSubmit={handleVerifyOtp}>
+                <div>
+                  <label htmlFor="otp">OTP</label>
+                  <input
+                    type="text"
+                    name="otp"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter OTP"
+                  />
+                </div>
+                <br />
+                <button type="submit" className="btn btn-submit">
+                  Verify OTP
+                </button>
+              </form>
+            )}
           </div>
         </main>
       </section>
