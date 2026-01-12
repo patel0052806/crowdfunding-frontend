@@ -36,43 +36,32 @@ export const AdminDashboard = () => {
     fetchPendingCampaigns();
   }, []);
 
-  const approveCampaign = async (id) => {
+  const handleUpdateStatus = async (id, status) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/approve/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/${id}/status`, {
         method: "PUT",
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
+        body: JSON.stringify({ status }),
       });
+      const data = await response.json().catch(() => null);
       if (response.ok) {
         fetchPendingCampaigns();
-        toast.success("Campaign approved successfully");
+        toast.success(`Campaign ${status} successfully`);
+        if (data && data.previewUrl) {
+          console.log('Preview email URL:', data.previewUrl);
+          // open preview automatically in a new tab for development convenience
+          try { window.open(data.previewUrl, '_blank'); } catch (e) { /* ignore */ }
+          toast.info('Email preview opened in a new tab');
+        }
       } else {
-        toast.error("Failed to approve campaign");
+        toast.error(data && data.msg ? data.msg : `Failed to ${status} campaign`);
       }
     } catch (error) {
       console.log(error);
-      toast.error("An error occurred while approving the campaign");
-    }
-  };
-
-  const rejectCampaign = async (id) => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/campaigns/reject/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (response.ok) {
-        fetchPendingCampaigns();
-        toast.success("Campaign rejected successfully");
-      } else {
-        toast.error("Failed to reject campaign");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("An error occurred while rejecting the campaign");
+      toast.error(`An error occurred while ${status} the campaign`);
     }
   };
 
@@ -94,12 +83,11 @@ export const AdminDashboard = () => {
                 <p>Goal: ${campaign.goal}</p>
                 <p>Deadline: {new Date(campaign.deadline).toLocaleDateString()}</p>
                 <div className="admin-actions">
-                  <button className="btn" onClick={() => approveCampaign(campaign._id)}>Approve</button>
-                  <button className="btn btn-delete" onClick={() => rejectCampaign(campaign._id)}>Reject</button>
+                  <button className="btn" onClick={() => handleUpdateStatus(campaign._id, 'approved')}>Approve</button>
+                  <button className="btn btn-delete" onClick={() => handleUpdateStatus(campaign._id, 'rejected')}>Reject</button>
                   <Link to={`/admin/campaigns/edit/${campaign._id}`}>
                     <button className="btn">Edit</button>
                   </Link>
-                  {/* Add an edit button later */}
                 </div>
               </div>
             </div>
