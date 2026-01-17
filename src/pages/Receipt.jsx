@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
@@ -17,14 +18,12 @@ export const Receipt = () => {
     useEffect(() => {
         const fetchReceipt = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/donation/receipts/${receiptId}`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/donation/receipts/${receiptId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                if (!response.ok) throw new Error("Failed to fetch receipt");
-                const data = await response.json();
-                setReceipt(data);
+                setReceipt(response.data);
             } catch (error) {
-                console.error(error);
+                console.error("Failed to fetch receipt", error);
                 navigate("/404");
             } finally {
                 setLoading(false);
