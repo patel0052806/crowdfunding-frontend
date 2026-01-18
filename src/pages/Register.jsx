@@ -68,13 +68,23 @@ export const Register = () => {
         setShowOtpInput(true);
 
         // send otp
-        await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: user.email }),
-        });
+        try {
+          const otpResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email: user.email }),
+          });
+          if (!otpResponse.ok) {
+            const otp_res_data = await otpResponse.json();
+            // Use the detailed error from the backend for the toast
+            toast.error(otp_res_data.error || otp_res_data.message);
+          }
+        } catch (error) {
+            toast.error("Failed to send OTP. Please try again later.");
+            console.error("Error sending OTP:", error);
+        }
       } else {
         toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
         setErrorMsg(res_data.message || "Registration failed. Please try again.");
