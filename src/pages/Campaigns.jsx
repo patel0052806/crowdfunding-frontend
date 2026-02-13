@@ -95,6 +95,24 @@ export const Campaigns = () => {
     fetchCampaigns();
   };
 
+  const handleShare = (campaign, platform) => {
+    const shareUrl = `${window.location.origin}/campaigns/${campaign._id}`;
+    const shareText = `Check out this amazing campaign: ${campaign.title} - Help reach the goal of $${campaign.goal}`;
+    
+    let url = '';
+    if (platform === 'whatsapp') {
+      url = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+    } else if (platform === 'twitter') {
+      url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    } else if (platform === 'facebook') {
+      url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+    }
+    
+    if (url) {
+      window.open(url, '_blank', 'width=600,height=400');
+    }
+  };
+
   const categories = ['Education', 'Healthcare', 'Environment', 'Technology', 'Arts', 'Social Cause', 'General'];
 
   return (
@@ -128,7 +146,7 @@ export const Campaigns = () => {
           <button className="btn" onClick={handleAddCampaignClick}>Add New Campaign</button>
         </div>
       )}
-      <div className="container grid grid-three-cols">
+      <div className="container grid">
         {loading ? (
           <Loading />
         ) : campaigns && campaigns.length > 0 ? (
@@ -155,6 +173,17 @@ export const Campaigns = () => {
                   ) : (
                     <button className="btn" onClick={() => navigate("/login")}>Login to Donate</button>
                   )}
+                  <div className="share-buttons">
+                    <button className="share-btn share-whatsapp" onClick={() => handleShare(curElem, 'whatsapp')} title="Share on WhatsApp">
+                      <span>💬</span>
+                    </button>
+                    <button className="share-btn share-twitter" onClick={() => handleShare(curElem, 'twitter')} title="Share on Twitter">
+                      <span>𝕏</span>
+                    </button>
+                    <button className="share-btn share-facebook" onClick={() => handleShare(curElem, 'facebook')} title="Share on Facebook">
+                      <span>f</span>
+                    </button>
+                  </div>
                   {user && user.isAdmin && (
                     <>
                       <button className="btn btn-delete" onClick={() => deleteCampaign(_id)}>Delete</button>

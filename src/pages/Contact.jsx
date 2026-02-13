@@ -52,15 +52,15 @@ export const Contact = () => {
   };
   return (
     <>
-    <section>
-      <div className="section-contact">
+    <section className="section-contact">
+      <div className="container">
         <h1 className="main-heading">contact us</h1>
       </div>
       <div className="container grid grid-two-column">
         <div className="contact-img">
           <img src="./images/contact.png" alt="contact" />
         </div>
-        <section className="section-form">
+        <div className="section-form">
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">username</label>
@@ -85,13 +85,9 @@ export const Contact = () => {
               />
             </div>
 
-            
-              
-            
-
             <div>
               <label htmlFor="message">message</label>
-              <textarea name="message" id="message" cols="30" rows="10"
+              <textarea name="message" id="message" cols="30" rows="6"
                autoComplete="off"
                value={contact.message}
                onChange={handleInput}
@@ -99,15 +95,10 @@ export const Contact = () => {
                required
               ></textarea>
             </div>
-            <div>
             <button className="btn">send message</button>
-            </div>
-
-
-
           </form>
 
-        </section>
+        </div>
       </div>
     </section>
     </>

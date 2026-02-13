@@ -88,11 +88,10 @@ export const Login = () => {
   };
 
   return (
-    <section>
-      <main>
+    <section className="section-login">
+      <div className="container">
         <div className="login-form">
           <h1 className="main-heading mb-3">Login</h1>
-          <br />
           {!showOtpInput ? (
             <form onSubmit={handleSubmit}>
               <div>
@@ -136,14 +135,13 @@ export const Login = () => {
                   placeholder="Enter OTP"
                 />
               </div>
-              <br />
               <button type="submit" className="btn btn-submit">
                 Verify OTP
               </button>
             </form>
           )}
         </div>
-      </main>
+      </div>
     </section>
   );
 };

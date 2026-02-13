@@ -36,7 +36,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 50px;
   flex-wrap: nowrap;
 }
 
@@ -354,11 +354,11 @@ nav ul li a[href="/logout"]:hover {
 /* Mobile nav overlay - dropdown under header */
 .mobile-nav-overlay {
   position: fixed;
-  top: 70px;
+  top: 50px;
   left: 0;
   right: 0;
   background: var(--color-headergradient);
-  max-height: calc(100vh - 70px);
+  max-height: calc(100vh - 50px);
   overflow-y: auto;
   display: none;
   flex-direction: column;

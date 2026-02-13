@@ -49,6 +49,12 @@ body {
   align-items: center;
 }
 
+.grid-three-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
 /* Typography */
 .main-heading {
   font-size: 2.5rem;
@@ -81,7 +87,7 @@ p {
 
 /* Utility Classes */
 .mb-3 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .brand {
@@ -113,44 +119,62 @@ p {
 }
 
 .btn:active,
-.btn:focus {
+.btn:focus,
+.btn:focus-visible {
   color: white;
   outline: none;
+  box-shadow: none !important;
 }
 
 .btn-group {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .btn-group a {
   text-decoration: none;
+  outline: none;
+}
+
+.btn-group a:focus,
+.btn-group a:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group button:focus,
+.btn-group button:active {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Hero Section */
 .section-hero {
-  padding: 5rem 0;
+  padding: 1.5rem 0;
   background: linear-gradient(135deg, var(--color-background), var(--color-border));
-  min-height: 80vh;
+  min-height: auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: background 0.3s ease;
+  margin-top: 50px;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   background: linear-gradient(135deg, var(--color-text), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-content p {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--color-textsecondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-image {
@@ -166,29 +190,30 @@ p {
 
 /* About Section */
 .about-container {
-  padding: 5rem 0;
+  padding: 3rem 0;
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
+  margin-top: 50px;
 }
 
 .about-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .about-header h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   background: linear-gradient(135deg, var(--color-text), var(--color-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .about-header p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--color-textsecondary);
   max-width: 600px;
   margin: 0 auto;
@@ -196,17 +221,17 @@ p {
 
 .about-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
   margin-top: 3rem;
 }
 
 .about-card {
   background: var(--color-card);
-  padding: 2.5rem 2rem;
-  border-radius: 15px;
+  padding: 2rem;
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   border: 1px solid var(--color-border);
 }
 
@@ -217,40 +242,97 @@ p {
 
 .about-card h2 {
   color: var(--color-text);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
 }
 
 .about-card p {
   color: var(--color-textsecondary);
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* Contact Section */
 .section-contact {
   text-align: center;
-  padding: 3rem 0 2rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
+  margin-top: 50px;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.contact-img {
+.section-contact .main-heading {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.section-contact .contact-img {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.contact-img img {
+.section-contact .contact-img img {
   max-width: 100%;
   height: auto;
   border-radius: 15px;
 }
 
-.section-form {
+.section-contact .section-form {
   background: var(--color-card);
-  padding: 3rem;
-  border-radius: 15px;
+  padding: 2rem;
+  border-radius: 12px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--color-border);
+}
+
+/* Apply for Campaign Section */
+.section-apply {
+  padding: 2rem 0;
+  margin-top: 50px;
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.section-apply .main-heading {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section-apply .apply-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-apply .apply-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.section-apply .apply-form {
+  background: var(--color-card);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+}
+
+.section-apply .form-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 /* Form Styles */
@@ -328,28 +410,28 @@ textarea {
 .registration-form h1 {
   text-align: center;
   color: var(--color-text);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .login-form form,
 .registration-form form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .login-form button,
 .registration-form button {
-  padding: 14px;
+  padding: 11px;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .login-form button:hover,
@@ -359,20 +441,145 @@ textarea {
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
 }
 
-/* Campaigns Page Styles */
-.section-campaigns {
-  padding: 4rem 0;
+/* Login Section */
+.section-login {
+  padding: 1rem 0;
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
+  overflow: hidden;
 }
 
-.grid-three-cols {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.section-login .container {
+  max-width: 420px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.section-login .login-form {
+  background: var(--color-card);
+  padding: 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.section-login .login-form h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.section-login .login-form br {
+  display: none;
+}
+
+.section-login .login-form form {
+  gap: 1rem;
+}
+
+.section-login .login-form form div {
+  gap: 0.3rem;
+}
+
+.section-login .login-form form label {
+  font-size: 0.9rem;
+}
+
+.section-login .login-form form input {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+/* Register Section - Full Width */
+.section-register {
+  padding: 1rem 0;
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-background), var(--color-border));
+  overflow: hidden;
+}
+
+.section-register .container {
+  max-width: 450px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.section-register .registration-form {
+  background: var(--color-card);
+  padding: 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.section-register .registration-form h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.section-register .registration-form br {
+  display: none;
+}
+
+.section-register .registration-form form {
+  gap: 1rem;
+}
+
+.section-register .registration-form form div {
+  gap: 0.3rem;
+}
+
+.section-register .registration-form form label {
+  font-size: 0.9rem;
+}
+
+.section-register .registration-form form input {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
+.section-register .registration-form button {
+  padding: 11px;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* Campaigns Page Styles */
+.section-campaigns {
+  padding: 2rem 0;
+  margin-top: 50px;
+  min-height: calc(100vh - 50px);
+}
+
+.section-campaigns .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-campaigns .main-heading {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .progress-bar {
   width: 100%;
   background-color: var(--color-border);
   border-radius: 8px;
-  height: 10px;
+  height: 8px;
   margin-bottom: 1rem;
 }
 
@@ -386,10 +593,11 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .campaign-stats p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-textsecondary);
   margin-bottom: 0;
@@ -423,60 +631,220 @@ textarea {
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .about-header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .section-form,
   .login-form,
   .registration-form {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  .section-contact {
+    padding: 1rem 0;
+  }
+
+  .section-apply {
+    padding: 1.5rem 0;
+  }
+
+  .section-apply .main-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-apply .apply-form {
+    padding: 1.5rem;
+  }
+
+  .section-hero {
+    padding: 1rem 0;
+  }
+
+  .grid-three-cols {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .section-campaigns .main-heading {
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 480px) {
   .main-heading {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    padding: 9px 18px;
+    font-size: 0.85rem;
   }
 
   .section-hero,
   .about-container,
-  .section-contact {
-    padding: 2rem 0;
+  .section-contact,
+  .section-apply {
+    padding: 1rem 0;
   }
 
   .about-card {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 
   .section-form,
   .login-form,
-  .registration-form {
-    padding: 1.5rem;
-    margin: 2rem 1rem;
+  .registration-form,
+  .apply-form {
+    padding: 1.2rem;
+    margin: 1rem;
   }
 
   .container {
+    padding: 0 12px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .section-campaigns .main-heading {
+    font-size: 1.5rem;
+  }
+
+  .section-apply .main-heading {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-apply .form-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid-three-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile responsive for Login and Register pages */
+@media (max-width: 768px) {
+  .section-login,
+  .section-register {
+    height: auto;
+    min-height: calc(100vh - 50px);
+  }
+
+  .section-login .login-form,
+  .section-register .registration-form {
+    padding: 1.5rem;
+  }
+
+  .section-login .login-form h1,
+  .section-register .registration-form h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-login,
+  .section-register {
+    height: auto;
+    min-height: calc(100vh - 50px);
+    padding: 1rem 0;
+  }
+
+  .section-login .container,
+  .section-register .container {
+    max-width: 100%;
     padding: 0 15px;
+  }
+
+  .section-login .login-form,
+  .section-register .registration-form {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .section-login .login-form h1,
+  .section-register .registration-form h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-login .login-form form input,
+  .section-register .registration-form form input {
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  .section-login .login-form button,
+  .section-register .registration-form button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Register Page Responsive */
+@media (max-width: 768px) {
+  .section-register {
+    height: auto;
+    min-height: calc(100vh - 50px);
+    padding: 1rem 0;
+  }
+
+  .section-register .registration-form {
+    padding: 1.5rem;
+  }
+
+  .section-register .registration-form h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-register {
+    height: auto;
+    min-height: calc(100vh - 50px);
+  }
+
+  .section-register .container {
+    max-width: 100%;
+  }
+
+  .section-register .registration-form {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .section-register .registration-form h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-register .registration-form form input {
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  .section-register .registration-form button {
+    padding: 10px;
+    font-size: 0.9rem;
   }
 }

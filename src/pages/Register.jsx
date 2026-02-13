@@ -97,8 +97,8 @@ export const Register = () => {
 
   return (
     <>
-      <section>
-        <main>
+      <section className="section-register">
+        <div className="container">
           <div className="registration-form">
             <h1 className="main-heading mb-3">registration form</h1>
             <br />
@@ -172,7 +172,7 @@ export const Register = () => {
               </form>
             )}
           </div>
-        </main>
+        </div>
       </section>
     </>
   );

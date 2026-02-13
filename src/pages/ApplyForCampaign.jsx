@@ -52,88 +52,85 @@ export const ApplyForCampaign = () => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div>
+    <section className="section-apply">
       {isLoggedIn ? (
         <>
-          <h1>Apply for Campaign</h1>
-          <section>
-            <main>
-              <div className="section-registration">
-                <div className="container grid grid-two-cols">
-                  <div className="registration-image">
-                    <img
-                      src="/images/image.png"
-                      alt="a boy is trying to do registration"
-                      width="500"
-                      height="500"
-                    />
-                  </div>
-                  <div className="registration-form">
-                    <h1 className="main-heading mb-3">Application Form</h1>
-                    <br />
-                    <form onSubmit={handleSubmit}>
-                      <div>
-                        <label htmlFor="title">Title</label>
-                        <input
-                          type="text"
-                          name="title"
-                          placeholder="Enter campaign title"
-                          required
-                          autoComplete="off"
-                          value={campaign.title}
-                          onChange={handleInput}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="description">Description</label>
-                        <textarea
-                          name="description"
-                          placeholder="Enter campaign description"
-                          required
-                          autoComplete="off"
-                          value={campaign.description}
-                          onChange={handleInput}
-                        ></textarea>
-                      </div>
-                      <div>
-                        <label htmlFor="goal">Goal</label>
-                        <input
-                          type="number"
-                          name="goal"
-                          placeholder="Enter campaign goal"
-                          required
-                          autoComplete="off"
-                          value={campaign.goal}
-                          onChange={handleInput}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="deadline">Deadline</label>
-                        <input
-                          type="date"
-                          name="deadline"
-                          placeholder="Enter campaign deadline"
-                          required
-                          autoComplete="off"
-                          value={campaign.deadline}
-                          onChange={handleInput}
-                          min={today}
-                        />
-                      </div>
-                      <br />
-                      <button type="submit" className="btn btn-submit">
-                        Submit Application
-                      </button>
-                    </form>
-                  </div>
+          <div className="container">
+            <h1 className="main-heading">Apply for Campaign</h1>
+          </div>
+          <div className="container grid grid-two-cols">
+            <div className="apply-image">
+              <img
+                src="/images/image.png"
+                alt="apply for campaign"
+                width="400"
+                height="400"
+              />
+            </div>
+            <div className="apply-form">
+              <h2 className="form-heading">Campaign Application Form</h2>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="title">Campaign Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter campaign title"
+                    required
+                    autoComplete="off"
+                    value={campaign.title}
+                    onChange={handleInput}
+                  />
                 </div>
-              </div>
-            </main>
-          </section>
+                <div>
+                  <label htmlFor="description">Description</label>
+                  <textarea
+                    name="description"
+                    placeholder="Enter campaign description"
+                    required
+                    autoComplete="off"
+                    value={campaign.description}
+                    onChange={handleInput}
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div>
+                  <label htmlFor="goal">Funding Goal ($)</label>
+                  <input
+                    type="number"
+                    name="goal"
+                    placeholder="Enter campaign goal"
+                    required
+                    autoComplete="off"
+                    value={campaign.goal}
+                    onChange={handleInput}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="deadline">Deadline</label>
+                  <input
+                    type="date"
+                    name="deadline"
+                    placeholder="Enter campaign deadline"
+                    required
+                    autoComplete="off"
+                    value={campaign.deadline}
+                    onChange={handleInput}
+                    min={today}
+                  />
+                </div>
+                <button type="submit" className="btn btn-submit">
+                  Submit Application
+                </button>
+              </form>
+            </div>
+          </div>
         </>
       ) : (
-        <h1>Please login to apply for a campaign</h1>
+        <div className="container">
+          <h1 className="main-heading">Please login to apply for a campaign</h1>
+        </div>
       )}
-    </div>
+    </section>
   );
 };
