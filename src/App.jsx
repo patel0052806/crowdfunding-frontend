@@ -18,6 +18,7 @@ import { DonationReport } from "./pages/DonationReport";
 import { ApplyForCampaign } from "./pages/ApplyForCampaign";
 import { Receipt } from "./pages/Receipt";
 import { AdminDashboard } from "./pages/Admin-Dashboard";
+import { AdminReport } from "./pages/AdminReport";
 import { ThemeProvider } from "./store/theme.jsx";
 
 import { ToastContainer } from 'react-toastify';
@@ -47,6 +48,7 @@ const App = () => {
            <Route path="contacts" element={<AdminContacts />} />
            <Route path="add-campaign" element={<AddCampaignPage />} />
            <Route path="dashboard" element={<AdminDashboard />} />
+           <Route path="report" element={<AdminReport />} />
            <Route path="campaigns/edit/:id" element={<AdminUpdate />} />
            <Route path="donations/:campaignId" element={<DonationReport />} />
           </Route>

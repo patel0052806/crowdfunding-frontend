@@ -12,6 +12,7 @@ export const AdminLayout = () => {
                 <nav>
                     <ul>
                         <li><NavLink to="/admin/dashboard"><MdCampaign /> Dashboard</NavLink></li>
+                        <li><NavLink to="/admin/report"><MdCampaign /> report</NavLink></li>
                         <li><NavLink to="/admin/users"><FaUsers /> users</NavLink></li>
                         <li><NavLink to="/admin/contacts"><MdContactMail /> contacts</NavLink></li>
                         <li><NavLink to="/campaigns"><MdCampaign /> campaigns</NavLink></li>

@@ -1,7 +1,37 @@
 .page-container {
-  padding-top: 70px;
+  padding-top: 100px; /* ensure content sits below navbar */
 }
 
 .section-add-campaign .container:nth-child(2) {
   margin-top: 20px;
+}
+
+/* form wrapper used across several admin pages */
+.add-campaign-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--color-card);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.add-campaign-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.add-campaign-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.add-campaign-form input,
+.add-campaign-form textarea {
+  width: 100%;
+}
+
+.add-campaign-form button {
+  align-self: center;
 }
