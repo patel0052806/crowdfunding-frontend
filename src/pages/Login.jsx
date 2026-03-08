@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth.jsx";
-import {  toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import "./Login.css";
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -13,7 +14,6 @@ export const Login = () => {
   const navigate = useNavigate();
   const { storeTokenInLS } = useAuth();
 
-  // handle input change
   const handleInput = (e) => {
     const { name, value } = e.target;
     setUser({
@@ -45,10 +45,8 @@ export const Login = () => {
     }
   };
 
-  // handle form submit
   const handleSubmit = async (e) => {
-    e.preventDefault(); // stop page refresh
-    console.log(user);
+    e.preventDefault();
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: "POST",
@@ -57,20 +55,17 @@ export const Login = () => {
         },
         body: JSON.stringify(user),
       });
-      console.log("login form: ", response);
-      
+
       const res_data = await response.json();
 
       if (response.ok) {
         toast.success("login successful");
         storeTokenInLS(res_data.token);
         setUser({ email: "", password: "" });
-        console.log(res_data);
         navigate("/");
       } else {
         if (res_data.code === "EMAIL_NOT_VERIFIED") {
           setShowOtpInput(true);
-          // send otp
           await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
             method: "POST",
             headers: {
@@ -80,7 +75,6 @@ export const Login = () => {
           });
         }
         toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
-        console.log("error inside response ", "error");
       }
     } catch (error) {
       console.error("Error", error);
@@ -88,10 +82,13 @@ export const Login = () => {
   };
 
   return (
-    <section className="section-login">
-      <div className="container">
-        <div className="login-form">
-          <h1 className="main-heading mb-3">Login</h1>
+    <section className="section-login auth-login-page">
+      <div className="container auth-container">
+        <div className="login-form auth-card">
+          <p className="auth-tag">Welcome Back</p>
+          <h1 className="main-heading">Login</h1>
+          <p className="auth-subtitle">Access your dashboard to manage campaigns, track donations, and update your profile.</p>
+
           {!showOtpInput ? (
             <form onSubmit={handleSubmit}>
               <div>
@@ -99,7 +96,7 @@ export const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter Email"
+                  placeholder="Enter email"
                   id="email"
                   required
                   autoComplete="off"
@@ -113,7 +110,7 @@ export const Login = () => {
                 <input
                   type="password"
                   name="password"
-                  placeholder="Password"
+                  placeholder="Enter password"
                   id="password"
                   required
                   autoComplete="off"
@@ -121,7 +118,8 @@ export const Login = () => {
                   onChange={handleInput}
                 />
               </div>
-              <button type="submit">Login</button>
+
+              <button type="submit" className="btn auth-submit-btn">Login</button>
             </form>
           ) : (
             <form onSubmit={handleVerifyOtp}>
@@ -130,14 +128,13 @@ export const Login = () => {
                 <input
                   type="text"
                   name="otp"
+                  id="otp"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   placeholder="Enter OTP"
                 />
               </div>
-              <button type="submit" className="btn btn-submit">
-                Verify OTP
-              </button>
+              <button type="submit" className="btn auth-submit-btn">Verify OTP</button>
             </form>
           )}
         </div>
@@ -145,5 +142,3 @@ export const Login = () => {
     </section>
   );
 };
-
-

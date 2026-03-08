@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
+import "./ApplyForCampaign.css";
 
 export const ApplyForCampaign = () => {
   const [campaign, setCampaign] = useState({
     title: "",
     description: "",
     goal: "",
+    category: "General",
     deadline: "",
   });
 
@@ -37,6 +39,7 @@ export const ApplyForCampaign = () => {
           title: "",
           description: "",
           goal: "",
+          category: "General",
           deadline: "",
         });
         toast.success("Campaign application submitted successfully");
@@ -49,31 +52,35 @@ export const ApplyForCampaign = () => {
     }
   };
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
 
   return (
-    <section className="section-apply">
+    <section className="apply-campaign-page">
       {isLoggedIn ? (
-        <>
-          <div className="container">
-            <h1 className="main-heading">Apply for Campaign</h1>
-          </div>
-          <div className="container grid grid-two-cols">
-            <div className="apply-image">
-              <img
-                src="/images/image.png"
-                alt="apply for campaign"
-                width="400"
-                height="400"
-              />
-            </div>
-            <div className="apply-form">
-              <h2 className="form-heading">Campaign Application Form</h2>
-              <form onSubmit={handleSubmit}>
+        <div className="container apply-campaign-shell">
+          <aside className="apply-campaign-intro">
+            <h1>Start Your Campaign</h1>
+            <p>
+              Share your idea, set a clear goal, and submit it for admin review.
+              Once approved, your campaign goes live for donations.
+            </p>
+            <img
+              src="/images/image.png"
+              alt="apply for campaign"
+              width="420"
+              height="420"
+            />
+          </aside>
+
+          <div className="apply-campaign-card">
+            <h2>Campaign Application Form</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="field-row">
                 <div>
                   <label htmlFor="title">Campaign Title</label>
                   <input
                     type="text"
+                    id="title"
                     name="title"
                     placeholder="Enter campaign title"
                     required
@@ -82,11 +89,15 @@ export const ApplyForCampaign = () => {
                     onChange={handleInput}
                   />
                 </div>
+              </div>
+
+              <div className="field-row">
                 <div>
                   <label htmlFor="description">Description</label>
                   <textarea
+                    id="description"
                     name="description"
-                    placeholder="Enter campaign description"
+                    placeholder="Explain your campaign purpose"
                     required
                     autoComplete="off"
                     value={campaign.description}
@@ -94,24 +105,50 @@ export const ApplyForCampaign = () => {
                     rows="4"
                   ></textarea>
                 </div>
+              </div>
+
+              <div className="field-grid">
                 <div>
                   <label htmlFor="goal">Funding Goal ($)</label>
                   <input
                     type="number"
+                    id="goal"
                     name="goal"
-                    placeholder="Enter campaign goal"
+                    placeholder="e.g. 5000"
                     required
                     autoComplete="off"
                     value={campaign.goal}
                     onChange={handleInput}
                   />
                 </div>
+
+                <div>
+                  <label htmlFor="category">Category</label>
+                  <select
+                    id="category"
+                    name="category"
+                    required
+                    value={campaign.category}
+                    onChange={handleInput}
+                  >
+                    <option value="General">General</option>
+                    <option value="Education">Education</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Social Cause">Social Cause</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="field-row">
                 <div>
                   <label htmlFor="deadline">Deadline</label>
                   <input
                     type="date"
+                    id="deadline"
                     name="deadline"
-                    placeholder="Enter campaign deadline"
                     required
                     autoComplete="off"
                     value={campaign.deadline}
@@ -119,16 +156,17 @@ export const ApplyForCampaign = () => {
                     min={today}
                   />
                 </div>
-                <button type="submit" className="btn btn-submit">
-                  Submit Application
-                </button>
-              </form>
-            </div>
+              </div>
+
+              <button type="submit" className="btn apply-submit-btn">
+                Submit Application
+              </button>
+            </form>
           </div>
-        </>
+        </div>
       ) : (
-        <div className="container">
-          <h1 className="main-heading">Please login to apply for a campaign</h1>
+        <div className="container apply-login-note">
+          <h1>Please login to apply for a campaign</h1>
         </div>
       )}
     </section>

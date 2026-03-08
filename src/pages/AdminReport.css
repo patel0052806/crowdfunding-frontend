@@ -1,38 +1,329 @@
-/* ensure content sits below the fixed header */
 .admin-report {
-  padding-top: 250px !important;
-  padding-bottom: 60px;
+  --report-bg-1: #f8fafc;
+  --report-bg-2: #eef2ff;
+  --report-card: #ffffff;
+  --report-border: #d7dfec;
+  --report-text: #0f172a;
+  --report-muted: #5f6f85;
+
+  padding: 28px 0 56px;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(37, 99, 235, 0.08), transparent 26%),
+    radial-gradient(circle at 95% 0%, rgba(99, 102, 241, 0.1), transparent 24%),
+    linear-gradient(180deg, var(--report-bg-2), var(--report-bg-1));
 }
 
-/* basic styles for report cards */
-.admin-report .report-cards {
-  display: flex;
-  flex-wrap: wrap;
+.admin-report .report-container {
+  width: min(1200px, 100% - 2rem);
+  margin: 0 auto;
+  display: grid;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
-.admin-report .chart-wrapper {
-  max-width: 600px;
-  margin: 0 auto 40px;
-}
-.admin-report .report-cards .card {
-  flex: 1 1 150px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
+.admin-report .report-hero {
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 0.15rem 0 0.25rem;
 }
-.admin-report .report-cards .card h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.2rem;
-}
-.admin-report .report-cards .card p {
-  font-size: 1.5rem;
+
+.admin-report .main-heading {
   margin: 0;
-  font-weight: bold;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--report-text);
+  font-weight: 800;
 }
+
+.admin-report .report-subtitle {
+  margin: 0.4rem 0 0;
+  color: var(--report-muted);
+  font-size: 0.98rem;
+}
+
+.admin-report .report-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.admin-report .metric-card {
+  background: linear-gradient(155deg, #ffffff 0%, #f7f9ff 100%);
+  border: 1px solid var(--report-border);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+}
+
+.admin-report .metric-total {
+  background: linear-gradient(155deg, #1d4ed8 0%, #4f46e5 100%);
+  border-color: transparent;
+}
+
+.admin-report .metric-label {
+  margin: 0;
+  color: var(--report-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.admin-report .metric-card .metric-value {
+  margin: 0.3rem 0 0;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  font-weight: 800;
+  color: var(--report-text);
+}
+
+.admin-report .metric-total .metric-label,
+.admin-report .metric-total .metric-value {
+  color: #ffffff;
+}
+
+.admin-report .clickable {
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-report .clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+}
+
+.admin-report .clickable.active {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.admin-report .report-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.admin-report .chart-panel,
+.admin-report .breakdown-panel,
+.admin-report .campaign-table-section {
+  background: var(--report-card);
+  border: 1px solid var(--report-border);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.admin-report .chart-panel h2,
+.admin-report .breakdown-panel h2,
+.admin-report .campaign-table-section h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.15rem;
+  color: var(--report-text);
+}
+
+.admin-report .chart-canvas-wrap {
+  height: 360px;
+}
+
+.admin-report .breakdown-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.admin-report .breakdown-item {
+  border: 1px solid #e4ebf7;
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: #fbfdff;
+}
+
+.admin-report .breakdown-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-report .status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--report-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.admin-report .status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.admin-report .breakdown-top strong {
+  color: var(--report-text);
+  font-size: 0.92rem;
+}
+
+.admin-report .progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e8eef8;
+  overflow: hidden;
+}
+
+.admin-report .progress-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.admin-report .status-count {
+  margin: 0.45rem 0 0;
+  color: var(--report-muted);
+  font-size: 0.85rem;
+}
+
+.admin-report .campaign-table-section {
+  margin-top: 0.1rem;
+}
+
+.admin-report .table-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.admin-report .table-heading-row span {
+  font-size: 0.84rem;
+  color: var(--report-muted);
+  font-weight: 600;
+}
+
+.admin-report .campaign-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-report .campaign-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.admin-report .campaign-table thead {
+  background: #eef2ff;
+}
+
+.admin-report .campaign-table th,
+.admin-report .campaign-table td {
+  padding: 11px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5eaf2;
+  font-size: 0.9rem;
+  color: #1e293b;
+  vertical-align: top;
+}
+
+.admin-report .campaign-table th:not(.col-title):not(.col-category),
+.admin-report .campaign-table td:not(.col-title):not(.col-category) {
+  white-space: nowrap;
+}
+
+.admin-report .campaign-table .col-title,
+.admin-report .campaign-table .col-category {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.admin-report .campaign-table .col-title {
+  width: 34%;
+  min-width: 240px;
+}
+
+.admin-report .campaign-table .col-category {
+  width: 18%;
+  min-width: 140px;
+}
+
+.admin-report .campaign-table th {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.admin-report .campaign-table .empty-row {
+  text-align: center;
+  color: var(--report-muted);
+  padding: 16px;
+}
+
+.admin-report .table-status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.admin-report .status-approved {
+  background: #e8f8ef;
+  color: #15803d;
+}
+
+.admin-report .status-rejected {
+  background: #feecec;
+  color: #b91c1c;
+}
+
+.admin-report .status-pending {
+  background: #fff8e6;
+  color: #b45309;
+}
+
+.admin-report .report-error {
+  text-align: center;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+@media (max-width: 950px) {
+  .admin-report .report-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-report .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-report .chart-canvas-wrap {
+    height: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-report {
+    padding-top: 20px;
+  }
+
+  .admin-report .report-container {
+    width: min(1200px, 100% - 1rem);
+  }
+
+  .admin-report .report-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-report .chart-canvas-wrap {
+    height: 280px;
+  }
+
+  .admin-report .table-heading-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

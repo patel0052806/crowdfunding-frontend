@@ -7,7 +7,7 @@ import "./Admin-Layout.css";
 
 export const AdminLayout = () => {
     return <>
-        <header>
+        <header className="admin-layout-header">
             <div className="container">
                 <nav>
                     <ul>

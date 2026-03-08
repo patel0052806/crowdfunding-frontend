@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth.jsx";
 import { toast } from "react-toastify";
+import "./Register.css";
 
 export const Register = () => {
   const [user, setUser] = useState({
@@ -17,8 +18,7 @@ export const Register = () => {
   const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    const { name, value } = e.target;
     setUser({
       ...user,
       [name]: value,
@@ -48,10 +48,9 @@ export const Register = () => {
     }
   };
 
-  // handle form on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg(""); // Clear previous errors
+    setErrorMsg("");
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
@@ -62,28 +61,27 @@ export const Register = () => {
         body: JSON.stringify(user),
       });
       const res_data = await response.json();
-      console.log("res from server", res_data.extraDetails);
+
       if (response.ok) {
         toast.success("registration successful, please verify your email");
         setShowOtpInput(true);
 
-        // send otp
         try {
           const otpResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email: user.email }),
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: user.email }),
           });
+
           if (!otpResponse.ok) {
             const otp_res_data = await otpResponse.json();
-            // Use the detailed error from the backend for the toast
             toast.error(otp_res_data.error || otp_res_data.message);
           }
         } catch (error) {
-            toast.error("Failed to send OTP. Please try again later.");
-            console.error("Error sending OTP:", error);
+          toast.error("Failed to send OTP. Please try again later.");
+          console.error("Error sending OTP:", error);
         }
       } else {
         toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
@@ -96,84 +94,91 @@ export const Register = () => {
   };
 
   return (
-    <>
-      <section className="section-register">
-        <div className="container">
-          <div className="registration-form">
-            <h1 className="main-heading mb-3">registration form</h1>
-            <br />
-            {errorMsg && (
-              <div style={{ color: "red", marginBottom: "10px" }}>
-                {errorMsg}
+    <section className="section-register auth-register-page">
+      <div className="container auth-container">
+        <div className="registration-form auth-card">
+          <p className="auth-register-badge">Create Account</p>
+          <h1 className="main-heading">Registration Form</h1>
+          <p className="auth-register-subtitle">Join Launch Pad to start and support campaigns that create real impact.</p>
+
+          {errorMsg && <div className="auth-error-msg">{errorMsg}</div>}
+
+          {!showOtpInput ? (
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="username">Username</label>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  value={user.username}
+                  onChange={handleInput}
+                  placeholder="Enter username"
+                  required
+                />
               </div>
-            )}
-            {!showOtpInput ? (
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label htmlFor="username">username</label>
-                  <input
-                    type="text"
-                    name="username"
-                    value={user.username}
-                    onChange={handleInput}
-                    placeholder="username"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email">email</label>
-                  <input
-                    type="text"
-                    name="email"
-                    value={user.email}
-                    onChange={handleInput}
-                    placeholder="email"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone">phone</label>
-                  <input
-                    type="number"
-                    name="phone"
-                    value={user.phone}
-                    onChange={handleInput}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password">password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={user.password}
-                    onChange={handleInput}
-                    placeholder="password"
-                  />
-                </div>
-                <br />
-                <button type="submit" className="btn btn-submit">
-                  Register Now
-                </button>
-              </form>
-            ) : (
-              <form onSubmit={handleVerifyOtp}>
-                <div>
-                  <label htmlFor="otp">OTP</label>
-                  <input
-                    type="text"
-                    name="otp"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    placeholder="Enter OTP"
-                  />
-                </div>
-                <br />
-                <button type="submit" className="btn btn-submit">
-                  Verify OTP
-                </button>
-              </form>
-            )}
-          </div>
+
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={user.email}
+                  onChange={handleInput}
+                  placeholder="Enter email"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone">Phone</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleInput}
+                  placeholder="Enter phone number"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleInput}
+                  placeholder="Create password"
+                  required
+                />
+              </div>
+
+              <button type="submit" className="btn auth-submit-btn">Register Now</button>
+            </form>
+          ) : (
+            <form onSubmit={handleVerifyOtp}>
+              <div>
+                <label htmlFor="otp">OTP</label>
+                <input
+                  id="otp"
+                  type="text"
+                  name="otp"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  placeholder="Enter OTP"
+                  required
+                />
+              </div>
+
+              <button type="submit" className="btn auth-submit-btn">Verify OTP</button>
+            </form>
+          )}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };

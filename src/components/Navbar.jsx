@@ -12,7 +12,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header>
+      <header className="site-header">
         <div className="container">
           <div className="logo-brand">
             <NavLink to="/"><img src="/images/home.png" alt="Launch Pad" />Launch Pad</NavLink>
@@ -154,3 +154,4 @@ export const Navbar = () => {
     </>
   );
 };
+

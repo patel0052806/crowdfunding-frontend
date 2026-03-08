@@ -1,0 +1,128 @@
+.donation-report-page {
+  padding-top: 32px;
+  padding-bottom: 48px;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.donation-report-page .main-heading {
+  margin-bottom: 0.25rem;
+}
+
+.donation-report-title {
+  text-align: center;
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.donation-report-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.donation-report-summary .summary-card {
+  background: #ffffff;
+  border: 1px solid #d9e1ec;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.donation-report-summary .summary-card h2 {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.4rem;
+}
+
+.donation-report-summary .summary-card p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.donation-table-wrapper {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #d9e1ec;
+  border-radius: 12px;
+  padding: 0.9rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  overflow-x: auto;
+}
+
+.donation-table-heading {
+  font-size: 1.05rem;
+  margin: 0 0 0.8rem;
+  color: #334155;
+}
+
+.donation-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.donation-table thead {
+  background: #eef2ff;
+}
+
+.donation-table th,
+.donation-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5eaf2;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.donation-table th {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.donation-table td {
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.donation-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.donation-table .empty-row {
+  text-align: center;
+  color: #64748b;
+  padding: 20px 14px;
+}
+
+.donation-report-error {
+  text-align: center;
+  color: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .donation-report-page {
+    padding-top: 20px;
+  }
+
+  .donation-report-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-table-wrapper {
+    padding: 0.7rem;
+  }
+
+  .donation-table {
+    min-width: 680px;
+  }
+}
+
